@@ -1,0 +1,62 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/main.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    {% block content %}
+    <nav>
+        <div class="logo">
+            <img src="{% static '/images/movielogo.png' %}" alt="">
+        </div>
+        
+        <ul class="category">
+            <li id="allActors">All</li>
+            {% for category in menu %}
+            <li class="category-name">
+                {{category}}
+                
+                <ul class="titles">
+                    {% if category.children %}
+                    {% for child in category.children.all %}
+                    <li class="child-name">{{child}}
+                        
+                        <ul class="actors">
+                            {% if child.children %}
+                            {% for i in child.children.all %}
+                            <li class="actor-name">{{i}}</li>
+                            {% endfor %}
+                            {% endif %}
+                        </ul>
+                       
+                    </li>
+                    {% endfor %}
+                    {% endif %}
+                    
+                </ul>
+               
+            </li>
+            {% endfor %}
+        </ul>
+        
+    </nav>
+    <h2>Actors in the Movie/Tv show/Cartoon</h2>
+    <div id="list">
+       <!-- ovde ide java script -->
+    </div>
+
+    <div id="allList">
+        <!-- ovde ide java script za sve glumce --> 
+        neko sranje
+    </div>
+    {% endblock %}
+
+    <script src="{% static '/main.js' %}"></script>
+</body>
+</html>
