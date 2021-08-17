@@ -48,15 +48,26 @@ document.getElementById("allActors").addEventListener("click", funAll);
 let allActors = document.getElementsByClassName('actor-name');
 
 
+var clicked = false;
+
 function funAll(){
-    console.log("ucitano");
+    if(!clicked){
+        clicked = true;
+        console.log("ucitano");
     
-    for(i=0; i<allActors.length; i++){
-        let svi = document.getElementById("allList");
-        let all = allActors[i];
-        console.log("svaki pojedinacno",all.innerHTML);
-        
+        for(i=0; i<allActors.length; i++){
+            let node = document.createElement("LI");
+            let all = allActors[i].innerHTML;
+            console.log("svaki pojedinacno", all);
+            let textnode = document.createTextNode(all); 
+            
+            node.appendChild(textnode); 
+            document.getElementById("myList").appendChild(node);
+            
+            
+        }
     }
+    
     
 }
 
